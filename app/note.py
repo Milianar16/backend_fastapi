@@ -34,7 +34,7 @@ def update_note(noteId: str, payload: schemas.NoteBaseSchema, db: Session = Depe
                             detail=f'No note with this id: {noteId} found')
     update_data = payload.dict(exclude_unset=True)
     note_query.filter(models.Note.id == noteId).update(update_data,
-                                                       synchronize_session=False)
+                                            synchronize_session=False)
     db.commit()
     db.refresh(db_note)
     return {"status": "success", "note": db_note}
